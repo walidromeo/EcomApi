@@ -38,22 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/login");
         http.csrf().disable().cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().antMatchers(HttpMethod.POST,"/login").permitAll().and().authorizeRequests().antMatchers(HttpMethod.GET,"/upload/image/**").permitAll().and().authorizeRequests().antMatchers(HttpMethod.GET,"/products").permitAll().and().authorizeRequests().antMatchers(HttpMethod.GET,"/products/single/**").permitAll().and().authorizeRequests().antMatchers(HttpMethod.GET,"/products/getProductByCategory").permitAll().and().authorizeRequests().antMatchers(HttpMethod.GET,"/products/getProductIdByCategory").permitAll().and().authorizeRequests().antMatchers(HttpMethod.POST,"/commande/add_commande").permitAll().and().authorizeRequests().antMatchers(HttpMethod.GET,"/categorie").permitAll().and().authorizeRequests().antMatchers(HttpMethod.GET,"/products/product_category/**").permitAll().and().authorizeRequests().antMatchers("/v2/api-docs","/swagger-resources/**","/swagger-ui.html**","/webjars/**").permitAll();
-        //http.authorizeRequests().antMatchers(HttpMethod.POST,"/login").permitAll();
-        // GET AUTHORIZATION
-        http.authorizeRequests().antMatchers(GET,"/users/**").hasAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(GET,"/stock/consomation/**").hasAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(GET,"/stock/entre/**").hasAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(GET,"/stock/get_casier/**").hasAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(GET,"/stock/ca/**").hasAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(GET,"/stock/entre/**").hasAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(GET,"/stock/entre/**").hasAuthority("ROLE_USER");
-
-        // POST AUTHORIZATION
-        http.authorizeRequests().antMatchers(POST,"/users/save/**").hasAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST,"/stock/add_article/**").hasAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST,"/stock/add_article/**").hasAuthority("ROLE_ADMIN");
-
-        // Documentation
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CostumAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

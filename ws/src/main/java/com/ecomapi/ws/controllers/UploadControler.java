@@ -32,10 +32,9 @@ public class UploadControler {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ImageEntity> saveImg(
-                                         @RequestParam("file") MultipartFile file) throws IOException {
+            @RequestParam("file") MultipartFile file) throws IOException {
         return new ResponseEntity<>(imageService.store(file), HttpStatus.OK);
     }
-
     @GetMapping(value = "/image/download/{id}")
     public byte[] downloadImage(@PathVariable("id") String idClientPhoto) {
         return imageService.downloadImage(idClientPhoto);
