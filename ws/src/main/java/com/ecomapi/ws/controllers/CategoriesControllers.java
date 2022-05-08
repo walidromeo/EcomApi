@@ -35,7 +35,6 @@ public class CategoriesControllers {
         CategoryDto addToDb = categorieService.save(categoryDto);
         log.info("Stock DTO : {}",addToDb);
         CategoryResponse categoryResponse =modelMapper.map(addToDb, CategoryResponse.class);
-
         return new ResponseEntity<CategoryResponse>(categoryResponse, HttpStatus.CREATED);
     }
 

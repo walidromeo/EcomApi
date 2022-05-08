@@ -91,10 +91,10 @@ public class ProductControllers {
 
 
 
-    @PutMapping(path = "/entre/{clientId}", consumes = { MediaType.APPLICATION_XML_VALUE,
+    @PutMapping(path = "/update/{clientId}", consumes = { MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<ProductsResponse> entreStock(@PathVariable String clientId,
+    public ResponseEntity<ProductsResponse> updateProducts(@PathVariable String clientId,
                                                     @RequestBody ProductsRequest productsRequest,Principal authUser) {
         // Khasni ndir Get LCh7al kayn f la base u ndir 3lih Modification b dkchi li
         // ghadi nisft f JSON

@@ -21,7 +21,7 @@ import java.util.List;
 public class UploadControler {
     private final ImageService imageService;
     @GetMapping
-    public ResponseEntity<List<ImageEntity>> getTodos() {
+    public ResponseEntity<List<ImageEntity>> getImages() {
         List<ImageEntity> imageEntityList = imageService.getAllImages();
         return new ResponseEntity<List<ImageEntity>>(imageEntityList, HttpStatus.OK);
     }
@@ -31,13 +31,13 @@ public class UploadControler {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<ImageEntity> saveTodo(
+    public ResponseEntity<ImageEntity> saveImg(
                                          @RequestParam("file") MultipartFile file) throws IOException {
         return new ResponseEntity<>(imageService.store(file), HttpStatus.OK);
     }
 
     @GetMapping(value = "/image/download/{id}")
-    public byte[] downloadTodoImage(@PathVariable("id") String idClientPhoto) {
+    public byte[] downloadImage(@PathVariable("id") String idClientPhoto) {
         return imageService.downloadImage(idClientPhoto);
     }
 }
